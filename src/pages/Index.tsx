@@ -103,6 +103,7 @@ const ecosystemData: EcosystemNode[] = [
 const Index = () => {
   const [activeNode, setActiveNode] = useState<string | null>(null);
   const [activeTab, setActiveTab] = useState('overview');
+  const [hoveredNode, setHoveredNode] = useState<string | null>(null);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50">
@@ -143,6 +144,147 @@ const Index = () => {
                 и образовательные программы в единое профессиональное пространство
               </p>
             </div>
+
+            <Card className="mb-12 bg-white/50 backdrop-blur">
+              <CardHeader>
+                <CardTitle className="text-2xl text-center">Интерактивная карта связей</CardTitle>
+                <CardDescription className="text-center">
+                  Наведите на блок, чтобы увидеть связи с другими направлениями
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="relative w-full h-[500px] flex items-center justify-center">
+                  <svg className="absolute inset-0 w-full h-full" style={{ zIndex: 0 }}>
+                    <defs>
+                      <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+                        <polygon points="0 0, 10 3, 0 6" fill="#3b82f6" opacity="0.5" />
+                      </marker>
+                    </defs>
+                    {hoveredNode === 'online' && (
+                      <>
+                        <line x1="50%" y1="50%" x2="20%" y2="25%" stroke="#3b82f6" strokeWidth="2" opacity="0.6" markerEnd="url(#arrowhead)" className="animate-fade-in" />
+                        <line x1="50%" y1="50%" x2="80%" y2="25%" stroke="#3b82f6" strokeWidth="2" opacity="0.6" markerEnd="url(#arrowhead)" className="animate-fade-in" />
+                        <line x1="50%" y1="50%" x2="20%" y2="75%" stroke="#3b82f6" strokeWidth="2" opacity="0.6" markerEnd="url(#arrowhead)" className="animate-fade-in" />
+                        <line x1="50%" y1="50%" x2="80%" y2="75%" stroke="#3b82f6" strokeWidth="2" opacity="0.6" markerEnd="url(#arrowhead)" className="animate-fade-in" />
+                      </>
+                    )}
+                    {(hoveredNode === 'psycho' || hoveredNode === 'children' || hoveredNode === 'corporate') && (
+                      <>
+                        <line x1={hoveredNode === 'psycho' ? '20%' : hoveredNode === 'children' ? '20%' : '80%'} 
+                              y1={hoveredNode === 'psycho' ? '25%' : hoveredNode === 'children' ? '75%' : '25%'} 
+                              x2="50%" y2="50%" stroke="#6366f1" strokeWidth="2" opacity="0.6" className="animate-fade-in" />
+                        <line x1={hoveredNode === 'psycho' ? '20%' : hoveredNode === 'children' ? '20%' : '80%'} 
+                              y1={hoveredNode === 'psycho' ? '25%' : hoveredNode === 'children' ? '75%' : '25%'} 
+                              x2="80%" y2="75%" stroke="#06b6d4" strokeWidth="2" opacity="0.4" markerEnd="url(#arrowhead)" className="animate-fade-in" />
+                      </>
+                    )}
+                    {hoveredNode === 'edu' && (
+                      <>
+                        <line x1="80%" y1="75%" x2="50%" y2="50%" stroke="#06b6d4" strokeWidth="2" opacity="0.6" className="animate-fade-in" />
+                        <line x1="80%" y1="75%" x2="20%" y2="25%" stroke="#06b6d4" strokeWidth="2" opacity="0.4" className="animate-fade-in" />
+                        <line x1="80%" y1="75%" x2="80%" y2="25%" stroke="#06b6d4" strokeWidth="2" opacity="0.4" className="animate-fade-in" />
+                        <line x1="80%" y1="75%" x2="20%" y2="75%" stroke="#06b6d4" strokeWidth="2" opacity="0.4" className="animate-fade-in" />
+                      </>
+                    )}
+                  </svg>
+
+                  <div 
+                    className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 cursor-pointer transition-transform hover:scale-110"
+                    style={{ zIndex: 10 }}
+                    onMouseEnter={() => setHoveredNode('online')}
+                    onMouseLeave={() => setHoveredNode(null)}
+                    onClick={() => setActiveTab('online')}
+                  >
+                    <div className={`w-32 h-32 rounded-2xl bg-blue-500 shadow-xl flex flex-col items-center justify-center text-white ${
+                      hoveredNode === 'online' ? 'ring-4 ring-blue-300' : ''
+                    }`}>
+                      <Icon name="Globe" size={40} />
+                      <span className="text-xs mt-2 font-semibold text-center px-2">Онлайн-платформа</span>
+                    </div>
+                  </div>
+
+                  <div 
+                    className="absolute top-[15%] left-[12%] cursor-pointer transition-transform hover:scale-110"
+                    style={{ zIndex: 10 }}
+                    onMouseEnter={() => setHoveredNode('psycho')}
+                    onMouseLeave={() => setHoveredNode(null)}
+                    onClick={() => setActiveTab('psycho')}
+                  >
+                    <div className={`w-24 h-24 rounded-xl bg-indigo-500 shadow-lg flex flex-col items-center justify-center text-white ${
+                      hoveredNode === 'psycho' ? 'ring-4 ring-indigo-300' : ''
+                    }`}>
+                      <Icon name="Users" size={32} />
+                      <span className="text-[10px] mt-1 font-semibold text-center px-1">Психо центры</span>
+                    </div>
+                  </div>
+
+                  <div 
+                    className="absolute top-[15%] right-[12%] cursor-pointer transition-transform hover:scale-110"
+                    style={{ zIndex: 10 }}
+                    onMouseEnter={() => setHoveredNode('corporate')}
+                    onMouseLeave={() => setHoveredNode(null)}
+                    onClick={() => setActiveTab('corporate')}
+                  >
+                    <div className={`w-24 h-24 rounded-xl bg-blue-600 shadow-lg flex flex-col items-center justify-center text-white ${
+                      hoveredNode === 'corporate' ? 'ring-4 ring-blue-300' : ''
+                    }`}>
+                      <Icon name="Briefcase" size={32} />
+                      <span className="text-[10px] mt-1 font-semibold text-center px-1">Corporate</span>
+                    </div>
+                  </div>
+
+                  <div 
+                    className="absolute bottom-[15%] left-[12%] cursor-pointer transition-transform hover:scale-110"
+                    style={{ zIndex: 10 }}
+                    onMouseEnter={() => setHoveredNode('children')}
+                    onMouseLeave={() => setHoveredNode(null)}
+                    onClick={() => setActiveTab('children')}
+                  >
+                    <div className={`w-24 h-24 rounded-xl bg-violet-500 shadow-lg flex flex-col items-center justify-center text-white ${
+                      hoveredNode === 'children' ? 'ring-4 ring-violet-300' : ''
+                    }`}>
+                      <Icon name="Heart" size={32} />
+                      <span className="text-[10px] mt-1 font-semibold text-center px-1">Детские</span>
+                    </div>
+                  </div>
+
+                  <div 
+                    className="absolute bottom-[15%] right-[12%] cursor-pointer transition-transform hover:scale-110"
+                    style={{ zIndex: 10 }}
+                    onMouseEnter={() => setHoveredNode('edu')}
+                    onMouseLeave={() => setHoveredNode(null)}
+                    onClick={() => setActiveTab('edu')}
+                  >
+                    <div className={`w-24 h-24 rounded-xl bg-cyan-600 shadow-lg flex flex-col items-center justify-center text-white ${
+                      hoveredNode === 'edu' ? 'ring-4 ring-cyan-300' : ''
+                    }`}>
+                      <Icon name="GraduationCap" size={32} />
+                      <span className="text-[10px] mt-1 font-semibold text-center px-1">edu.allpsy</span>
+                    </div>
+                  </div>
+                </div>
+
+                {hoveredNode && (
+                  <div className="mt-6 p-4 bg-slate-50 rounded-lg animate-fade-in">
+                    <h4 className="font-semibold mb-2 flex items-center gap-2">
+                      <Icon name="Info" size={16} />
+                      {hoveredNode === 'online' && 'Онлайн-платформа связывает все блоки экосистемы'}
+                      {hoveredNode === 'psycho' && 'Психологические центры используют платформу и специалистов edu.allpsy'}
+                      {hoveredNode === 'children' && 'Детские центры работают через платформу с сертифицированными специалистами'}
+                      {hoveredNode === 'corporate' && 'Corporate использует ресурсы платформы и базу специалистов'}
+                      {hoveredNode === 'edu' && 'edu.allpsy обучает специалистов для всех направлений экосистемы'}
+                    </h4>
+                    <p className="text-sm text-slate-600">
+                      {hoveredNode === 'online' && 'Центральный узел для B2C клиентов, психологов (B2P), корпораций (B2B) и франчайзи (B2F)'}
+                      {hoveredNode === 'psycho' && 'Франшизная сеть офлайн-центров для индивидуального консультирования взрослых'}
+                      {hoveredNode === 'children' && 'Комплексное семейно-детское сопровождение: диагностика, поддержка, программы развития'}
+                      {hoveredNode === 'corporate' && 'Аудит, обучение и сопровождение команд и лидеров компаний'}
+                      {hoveredNode === 'edu' && 'Профессиональная подготовка, аттестация, супервизии и методическая поддержка психологов'}
+                    </p>
+                  </div>
+                )}
+              </CardContent>
+            </Card>
 
             <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
               {ecosystemData.map((node, index) => (
