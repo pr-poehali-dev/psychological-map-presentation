@@ -369,6 +369,109 @@ const Index = () => {
             <TabsContent key={node.id} value={node.id} className="animate-fade-in">
               <div className="grid lg:grid-cols-3 gap-8">
                 <div className="lg:col-span-2 space-y-6">
+                  {node.id === 'online' && (
+                    <Card className="mb-6 bg-gradient-to-br from-blue-50 to-indigo-50 border-blue-200">
+                      <CardHeader>
+                        <CardTitle className="text-2xl flex items-center gap-2">
+                          <Icon name="Layers" size={24} />
+                          Функциональные контуры платформы
+                        </CardTitle>
+                        <CardDescription>
+                          Онлайн-платформа включает 6 ключевых контуров для разных пользователей
+                        </CardDescription>
+                      </CardHeader>
+                      <CardContent>
+                        <div className="grid md:grid-cols-2 gap-4">
+                          <div className="bg-white p-4 rounded-lg shadow-sm border border-blue-100">
+                            <div className="flex items-start gap-3 mb-2">
+                              <div className="w-10 h-10 rounded-lg bg-blue-500 flex items-center justify-center flex-shrink-0">
+                                <Icon name="Search" className="text-white" size={20} />
+                              </div>
+                              <div>
+                                <h4 className="font-semibold text-sm">🧭 Маркетплейс психологов</h4>
+                                <p className="text-xs text-slate-600 mt-1">Каталог специалистов по профилю, стилю работы и подходу. Подбор психолога под запрос клиента.</p>
+                                <Badge variant="secondary" className="mt-2 text-xs">Клиенты</Badge>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div className="bg-white p-4 rounded-lg shadow-sm border border-blue-100">
+                            <div className="flex items-start gap-3 mb-2">
+                              <div className="w-10 h-10 rounded-lg bg-indigo-500 flex items-center justify-center flex-shrink-0">
+                                <Icon name="Video" className="text-white" size={20} />
+                              </div>
+                              <div>
+                                <h4 className="font-semibold text-sm">💬 Онлайн-консультирование</h4>
+                                <p className="text-xs text-slate-600 mt-1">Видеоконсультации, чат, защищённое хранилище заметок и данных.</p>
+                                <div className="flex gap-1 mt-2">
+                                  <Badge variant="secondary" className="text-xs">Клиенты</Badge>
+                                  <Badge variant="secondary" className="text-xs">Психологи</Badge>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div className="bg-white p-4 rounded-lg shadow-sm border border-blue-100">
+                            <div className="flex items-start gap-3 mb-2">
+                              <div className="w-10 h-10 rounded-lg bg-violet-500 flex items-center justify-center flex-shrink-0">
+                                <Icon name="Laptop" className="text-white" size={20} />
+                              </div>
+                              <div>
+                                <h4 className="font-semibold text-sm">💼 SaaS для психологов</h4>
+                                <p className="text-xs text-slate-600 mt-1">Онлайн-запись, приём оплат, CRM, учёт клиентов, календарь, видеосессии.</p>
+                                <div className="flex gap-1 mt-2">
+                                  <Badge variant="secondary" className="text-xs">Частные практики</Badge>
+                                  <Badge variant="secondary" className="text-xs">Центры</Badge>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div className="bg-white p-4 rounded-lg shadow-sm border border-blue-100">
+                            <div className="flex items-start gap-3 mb-2">
+                              <div className="w-10 h-10 rounded-lg bg-cyan-500 flex items-center justify-center flex-shrink-0">
+                                <Icon name="Building2" className="text-white" size={20} />
+                              </div>
+                              <div>
+                                <h4 className="font-semibold text-sm">🧱 Франчайзинговый модуль</h4>
+                                <p className="text-xs text-slate-600 mt-1">Управление филиалами, обмен кадрами, стандартизация процессов, аналитика.</p>
+                                <div className="flex gap-1 mt-2">
+                                  <Badge variant="secondary" className="text-xs">Франчайзи</Badge>
+                                  <Badge variant="secondary" className="text-xs">Управляющие</Badge>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div className="bg-white p-4 rounded-lg shadow-sm border border-blue-100">
+                            <div className="flex items-start gap-3 mb-2">
+                              <div className="w-10 h-10 rounded-lg bg-green-500 flex items-center justify-center flex-shrink-0">
+                                <Icon name="GraduationCap" className="text-white" size={20} />
+                              </div>
+                              <div>
+                                <h4 className="font-semibold text-sm">🎓 Профессиональный контур</h4>
+                                <p className="text-xs text-slate-600 mt-1">Личный кабинет психолога, доступ к обучению, аттестации, супервизиям, методическим материалам.</p>
+                                <Badge variant="secondary" className="mt-2 text-xs">Психологи экосистемы</Badge>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div className="bg-white p-4 rounded-lg shadow-sm border border-blue-100">
+                            <div className="flex items-start gap-3 mb-2">
+                              <div className="w-10 h-10 rounded-lg bg-orange-500 flex items-center justify-center flex-shrink-0">
+                                <Icon name="BarChart3" className="text-white" size={20} />
+                              </div>
+                              <div>
+                                <h4 className="font-semibold text-sm">📊 Управленческий контур</h4>
+                                <p className="text-xs text-slate-600 mt-1">Панель аналитики, контроль качества услуг, интеграция с CRM, учёт динамики клиентов и кадров.</p>
+                                <Badge variant="secondary" className="mt-2 text-xs">Руководство</Badge>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </CardContent>
+                    </Card>
+                  )}
                   <Card>
                     <CardHeader>
                       <div className="flex items-start gap-4">
@@ -519,7 +622,7 @@ const Index = () => {
       <footer className="bg-white border-t border-slate-200 mt-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           <div className="text-center text-sm text-slate-600">
-            <p className="mb-2">© 2024 ALLPSY. Психологическая экосистема</p>
+            <p className="mb-2">© 2025 ALLPSY. Психологическая экосистема</p>
             <p className="text-xs">Профессиональная психологическая помощь онлайн и офлайн</p>
           </div>
         </div>
